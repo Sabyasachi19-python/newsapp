@@ -1,12 +1,14 @@
 import './App.css';
 import React, { Component } from 'react'
+import Navbar from './components/Navbar';
+import News from './components/News';
 
 export default class App extends Component {
-  my_name = "Sabyasachi";
   render() { 
     return (
       <div>
-        Hello {this.my_name}, this is class based component
+       <Navbar />
+       <News />
       </div>
     )
   }
