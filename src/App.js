@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 export default class App extends Component {
   render() {
+    console.log('Test')
     return (
       <div>
         <Router>
