@@ -14,22 +14,26 @@ export class News extends Component {
     pageSize: PropTypes.number.isRequired,
     category: PropTypes.string.isRequired
   }
-  constructor() {
-    super();
+  capital = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       loading: false,
       page: 1
     }
+    document.title = `News SR - ${this.capital(this.props.category)}`;
   }
 
   handlePreviousClick = async () => {
-    this.setState({page:this.state.page - 1});
+    this.setState({ page: this.state.page - 1 });
     this.updateNews();
   }
 
   handleNextClick = async () => {
-    this.setState({page:this.state.page + 1});
+    this.setState({ page: this.state.page + 1 });
     this.updateNews()
   }
 
@@ -46,7 +50,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 className="text-center" style={{ margin: "35px 0px" }}>News SR Top Headlines</h1>
+        <h1 className="text-center" style={{ margin: "35px 0px" }}>News SR - Top {this.capital(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading && this.state.articles.map((element) => {
