@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import newslogo from './news.webp'
-//api-key: 25f116dbfc264c329d6bf8c5cceea572
 export class NewsItem extends Component {
     render() {
         let { title, description, imageUrl, newsURL, author, date, source } = this.props;
