@@ -9,7 +9,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  // document.title = `News SR - ${capital(props.category)}`;
+
   const capital = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -30,9 +30,9 @@ const News = (props) => {
     let data = await fetch(url);
     props.setProgress(30);
     let parsed_data = await data.json();
-    console.log(parsed_data);
     props.setProgress(50);
     setArticles(parsed_data.articles);
+    document.title = `News SR - ${capital(props.category)}`;
     setTotalResults(parsed_data.totalResults);
     setLoading(false);
     props.setProgress(100);
@@ -40,11 +40,12 @@ const News = (props) => {
 
   useEffect(() => {
     updateNews();
-  },[]);
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>
-      <h1 className="text-center" style={{ margin: "35px 0px" }}>News SR - Top {capital(props.category)} Headlines</h1>
+      <h1 className="text-center" style={{ margin: "35px 0px", marginTop: "90px" }}>News SR - Top {capital(props.category)} Headlines</h1>
       {loading && <Spinner />}
       <InfiniteScroll dataLength={articles.length} next={fetchMoreData} hasMore={articles.length !== totalResults} loader={<Spinner />}>
         <div className="container">
